@@ -26,7 +26,7 @@ public class UpdateAvisoHandler : IRequestHandler<UpdateAvisoRequest, IOperation
         if (aviso is not { Ativo: true })
             return OperationResult<GetAvisosResponse>.ReturnNotFound();
 
-        aviso.Mensagem = request.Mensagem;
+        aviso.AtualizarMensagem(request.Mensagem);
 
         await _context.SaveChangesAsync(cancellationToken);
 

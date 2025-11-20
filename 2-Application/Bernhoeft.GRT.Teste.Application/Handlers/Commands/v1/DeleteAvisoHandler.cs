@@ -25,7 +25,7 @@ public class DeleteAvisoHandler : IRequestHandler<DeleteAvisoRequest, IOperation
         if (aviso is not { Ativo: true })
             return OperationResult<object>.ReturnNotFound();
 
-        aviso.Ativo = false;
+        aviso.DesativarAviso();
 
         await _context.SaveChangesAsync(cancellationToken);
 
