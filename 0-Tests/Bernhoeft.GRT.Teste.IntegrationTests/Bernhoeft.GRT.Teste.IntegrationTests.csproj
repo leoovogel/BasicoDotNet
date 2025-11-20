@@ -25,4 +25,13 @@
     <ProjectReference Include="..\..\1-Presentation\Bernhoeft.GRT.Teste.Api\Bernhoeft.GRT.Teste.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Bernhoeft.GRT.Core">
+      <HintPath>..\..\Libs\Bernhoeft.GRT.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Bernhoeft.GRT.Core.EntityFramework">
+      <HintPath>..\..\Libs\Bernhoeft.GRT.Core.EntityFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

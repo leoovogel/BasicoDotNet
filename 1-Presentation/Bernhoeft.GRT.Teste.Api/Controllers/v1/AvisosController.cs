@@ -47,7 +47,7 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
             => await Mediator.Send(new GetAvisosRequest(), cancellationToken);
 
         /// <summary>
-        /// Cria um novo Aviso.
+        /// Cria um Aviso.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
@@ -78,6 +78,12 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
             return await Mediator.Send(request, cancellationToken);
         }
 
+        /// <summary>
+        /// Deleta um Aviso.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
