@@ -19,7 +19,7 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         /// <summary>
         /// Retorna um Aviso por ID.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="byIdRequest"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>Aviso.</returns>
         /// <response code="200">Sucesso.</response>
@@ -30,8 +30,8 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         // [JwtAuthorize(Roles = AuthorizationRoles.CONTRACTLAYOUT_SISTEMA_AVISO_PESQUISAR)]
-        public async Task<object> GetAviso([FromRoute] GetAvisoRequest request, CancellationToken cancellationToken)
-            => await Mediator.Send(request, cancellationToken);
+        public async Task<object> GetAviso([FromRoute] GetAvisoByIdRequest byIdRequest, CancellationToken cancellationToken)
+            => await Mediator.Send(byIdRequest, cancellationToken);
 
         /// <summary>
         /// Retorna Todos os Avisos Cadastrados para Tela de Edição.

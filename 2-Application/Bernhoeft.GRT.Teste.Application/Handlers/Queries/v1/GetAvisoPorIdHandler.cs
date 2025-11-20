@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Bernhoeft.GRT.Teste.Application.Handlers.Queries.v1
 {
-    public class GetAvisoPorIdHandler : IRequestHandler<GetAvisoRequest, IOperationResult<GetAvisosResponse>>
+    public class GetAvisoPorIdHandler : IRequestHandler<GetAvisoByIdRequest, IOperationResult<GetAvisosResponse>>
     {
         private readonly IServiceProvider _serviceProvider;
 
@@ -19,9 +19,9 @@ namespace Bernhoeft.GRT.Teste.Application.Handlers.Queries.v1
 
         public GetAvisoPorIdHandler(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
 
-        public async Task<IOperationResult<GetAvisosResponse>> Handle(GetAvisoRequest request, CancellationToken cancellationToken)
+        public async Task<IOperationResult<GetAvisosResponse>> Handle(GetAvisoByIdRequest byIdRequest, CancellationToken cancellationToken)
         {
-            var result = await _avisoRepository.ObterAvisoPorIdAsync(request.Id, TrackingBehavior.NoTracking, cancellationToken);
+            var result = await _avisoRepository.ObterAvisoPorIdAsync(byIdRequest.Id, TrackingBehavior.NoTracking, cancellationToken);
 
             return result is null
                 ? OperationResult<GetAvisosResponse>.ReturnNoContent()
