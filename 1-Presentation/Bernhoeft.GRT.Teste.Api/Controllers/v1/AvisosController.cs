@@ -1,4 +1,5 @@
-﻿using Bernhoeft.GRT.Teste.Application.Requests.Queries.v1;
+﻿using Bernhoeft.GRT.Teste.Application.Requests.Commands.v1;
+using Bernhoeft.GRT.Teste.Application.Requests.Queries.v1;
 using Bernhoeft.GRT.Teste.Application.Responses.Queries.v1;
 
 namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
@@ -15,15 +16,15 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = null)]
     public class AvisosController : RestApiController
     {
-        ///// <summary>
-        ///// Retorna um Aviso por ID.
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <param name="cancellationToken"></param>
-        ///// <returns>Aviso.</returns>
-        ///// <response code="200">Sucesso.</response>
-        ///// <response code="400">Dados Inválidos.</response>
-        ///// <response code="404">Aviso Não Encontrado.</response>
+        /// <summary>
+        /// Retorna um Aviso por ID.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Aviso.</returns>
+        /// <response code="200">Sucesso.</response>
+        /// <response code="400">Dados Inválidos.</response>
+        /// <response code="404">Aviso Não Encontrado.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetAvisosResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -44,5 +45,18 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<object> GetAvisos(CancellationToken cancellationToken)
             => await Mediator.Send(new GetAvisosRequest(), cancellationToken);
-    }
+
+        /// <summary>
+        /// Cria um novo Aviso.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Aviso criado.</returns>
+        /// <response code="201">Criado.</response>
+        /// <response code="400">Dados inválidos.</response>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(GetAvisosResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<object> PostAviso([FromBody] CreateAvisoRequest request, CancellationToken cancellationToken)
+            => await Mediator.Send(request, cancellationToken);    }
 }
