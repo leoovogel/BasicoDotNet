@@ -58,5 +58,24 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(GetAvisosResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<object> PostAviso([FromBody] CreateAvisoRequest request, CancellationToken cancellationToken)
-            => await Mediator.Send(request, cancellationToken);    }
+            => await Mediator.Send(request, cancellationToken);
+
+        /// <summary>
+        /// Atualiza apenas a mensagem de um aviso.
+        /// </summary>
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetAvisosResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<object> PutAviso([FromRoute] int id, [FromBody] UpdateAvisoBodyRequest body, CancellationToken cancellationToken)
+        {
+            var request = new UpdateAvisoRequest
+            {
+                Id = id,
+                Mensagem = body.Mensagem
+            };
+
+            return await Mediator.Send(request, cancellationToken);
+        }
+    }
 }
