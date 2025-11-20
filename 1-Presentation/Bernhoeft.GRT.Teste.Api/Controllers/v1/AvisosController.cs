@@ -77,5 +77,15 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
 
             return await Mediator.Send(request, cancellationToken);
         }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<object> DeleteAviso(int id, CancellationToken cancellationToken)
+        {
+            var request = new DeleteAvisoRequest { Id = id };
+            return await Mediator.Send(request, cancellationToken);
+        }
     }
 }
